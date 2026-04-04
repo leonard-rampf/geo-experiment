@@ -1,11 +1,15 @@
 from .optimization_methods import (
-    SEOOptimization,
-    GEOOptimization,
-    SEOGEOOptimization,
+    FC, FQ, FS,
+    CQ, CS, QS,
+    FCQ, FCS, FQS, CQS,
+    FCQS,
+    ALL_COMBINED_METHODS,
 )
 
 __all__ = [
-    "SEOOptimization",
-    "GEOOptimization",
-    "SEOGEOOptimization",
+    "FC", "FQ", "FS",
+    "CQ", "CS", "QS",
+    "FCQ", "FCS", "FQS", "CQS",
+    "FCQS",
+    "ALL_COMBINED_METHODS",
 ]
