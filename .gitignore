@@ -1,7 +1,1 @@
-config.json
-.pycache_local/
-__pycache__/
-*.pyc
-.env
-.DS_Store
-**/.DS_Store
+.ipynb_checkpoints/
