@@ -1,3 +1,4 @@
 data/retail/retail_geo_detailed_results.csv filter=lfs diff=lfs merge=lfs -text
 retail_geo_detailed_results_v2 filter=lfs diff=lfs merge=lfs -text
 *.csv filter=lfs diff=lfs merge=lfs -text
+*.jsonl filter=lfs diff=lfs merge=lfs -text
