@@ -3,7 +3,7 @@ from .optimization_methods import (
     CQ, CS, QS,
     FCQ, FCS, FQS, CQS,
     FCQS,
-    ALL_COMBINED_METHODS,
+    COMBINED_GEO_METHODS,
 )
 
 __all__ = [
@@ -11,5 +11,5 @@ __all__ = [
     "CQ", "CS", "QS",
     "FCQ", "FCS", "FQS", "CQS",
     "FCQS",
-    "ALL_COMBINED_METHODS",
+    "COMBINED_GEO_METHODS",
 ]

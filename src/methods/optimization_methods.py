@@ -241,7 +241,7 @@ class FCQS(CombinedGEOMethod):
 # Registry
 # ---------------------------------------------------------------------------
 
-ALL_COMBINED_METHODS = {
+COMBINED_GEO_METHODS = {
     # 2-way
     "FC":   FC,
     "FQ":   FQ,
