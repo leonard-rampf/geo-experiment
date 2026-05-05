@@ -84,29 +84,46 @@ class OpenAIHelper(LLMInterface):
         raw_prompt = "User: " + user_query
         return messages, raw_prompt
 
-    def generate(self, messages, response_format=None):
+    def generate(self, messages, response_format=None,
+                 temperature=1.0, top_p=0.95, seed=42,
+                 frequency_penalty=0.0, presence_penalty=0.0):
         """
         Generates a response from the OpenAI API based on the provided messages.
 
         Args:
             messages (list): A list of message dictionaries.
             response_format (str, optional): The desired response format.
+            temperature (float): Sampling temperature. 1.0 = default OpenAI behavior.
+            top_p (float): Nucleus sampling. 0.95 = consider top 95% of probability mass.
+            seed (int): Fixed random seed for reproducibility across runs.
+            frequency_penalty (float): Penalty for repeated tokens. 0.0 = no penalty.
+            presence_penalty (float): Penalty for previously seen tokens. 0.0 = no penalty.
 
         Returns:
-            dict: The generated response message.
+            tuple: The generated response message and the cost of the request.
         """
         if response_format is None:
-            # response format is only available in new models
             completion = self.client.chat.completions.create(
-                model=self.llm_name, messages=messages
+                model             = self.llm_name,
+                messages          = messages,
+                temperature       = temperature,
+                top_p             = top_p,
+                seed              = seed,
+                frequency_penalty = frequency_penalty,
+                presence_penalty  = presence_penalty,
             )
         else:
             if response_format == "json":
                 response_format = {"type": "json_object"}
             completion = self.client.chat.completions.create(
-                model=self.llm_name,
-                messages=messages,
-                response_format=response_format,
+                model             = self.llm_name,
+                messages          = messages,
+                temperature       = temperature,
+                top_p             = top_p,
+                seed              = seed,
+                frequency_penalty = frequency_penalty,
+                presence_penalty  = presence_penalty,
+                response_format   = response_format,
             )
         cost = self.calculate_response_cost(completion)
         return completion.choices[0].message, cost
