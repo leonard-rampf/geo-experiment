@@ -74,7 +74,14 @@ geo-experiment/
 
 ## GEO Methods
 
-10 single edits (from Puerto et al., 2025) + 11 combined edits (this work).
+10 single edits (from Puerto et al., 2025) + 11 combined edits (this work). Combined edits apply single edits sequentially: F = Fluency, C = Citations, Q = Quotes, S = Statistics.
+
+| Type | Methods |
+|---|---|
+| Single | Fluency, Citations, Quotes, Statistics, Authoritative, UniqueWords, TechnicalTerms, SimpleLanguage, LLMstxt, ContentImprovement |
+| Combined (2-way) | FC, FQ, FS, CQ, CS, QS |
+| Combined (3-way) | FCQ, FCS, FQS, CQS |
+| Combined (4-way) | FCQS |
 
 ### Naming Convention
 
