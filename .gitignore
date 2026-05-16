@@ -4,3 +4,7 @@
 __pycache__/
 *.pyc
 .claude/
+config.json.DS_Store
+**/.DS_Store
+.claude
+config.json
