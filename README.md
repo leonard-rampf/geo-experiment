@@ -74,14 +74,35 @@ geo-experiment/
 
 ## GEO Methods
 
-10 single edits (from Puerto et al., 2025) + 11 combined edits (this work):
+10 single edits (from Puerto et al., 2025) + 11 combined edits (this work).
 
-| Type | Methods |
+### Naming Convention
+
+The thesis uses descriptive names; notebooks and code use shorthand identifiers:
+
+| Thesis Name | Notebook / Code Name |
 |---|---|
-| Single | Fluency, Citations, Quotes, Statistics, Authoritative, UniqueWords, TechnicalTerms, SimpleLanguage, LLMstxt, ContentImprovement |
-| Combined (2-way) | FC, FQ, FS, CQ, CS, QS |
-| Combined (3-way) | FCQ, FCS, FQS, CQS |
-| Combined (4-way) | FCQS |
+| Cite Sources | `Citations(doc)` |
+| Quotation Addition | `Quotes(doc)` |
+| Statistics Addition | `Statistics(doc)` |
+| Fluency Optimization | `Fluency(doc)` |
+| Simple Language | `SimpleLanguage(doc)` |
+| Technical Terms | `TechnicalTerms(doc)` |
+| Unique Words | `UniqueWords(doc)` |
+| Authoritative Style | `Authoritative(doc)` |
+| Content Improvement | `ContentImprovement(doc)` |
+| LLM Guidance | `LLMstxt(doc)` |
+| CQ | `CQ(doc)` |
+| CS | `CS(doc)` |
+| QS | `QS(doc)` |
+| CQS | `CQS(doc)` |
+| FC | `FC(doc)` |
+| FQ | `FQ(doc)` |
+| FS | `FS(doc)` |
+| FCQ | `FCQ(doc)` |
+| FCS | `FCS(doc)` |
+| FQS | `FQS(doc)` |
+| FCQS | `FCQS(doc)` |
 
 ---
 
