@@ -21,7 +21,7 @@ This project empirically tests whether content-based Generative Engine Optimizat
 ```
 1. Preparation   →   Extract competitor documents from the C-SEO Bench dataset
 2. Manipulation  →   Apply 21 GEO methods to each target document (GPT-4o-mini)
-3. Retrieval     →   Submit edited documents to Vertex AI Search, record retrieval ranks
+3. Retrieval     →   Submit edited documents to Agent Search, record retrieval ranks
 4. Generation    →   Generate LLM responses with inline citations (GPT-4o-mini) and test H1 via Wilcoxon signed-rank test + Sign Test
 5. Evaluation    →   Test H2 via Wilcoxon signed-rank test + Sign Test
 ```
@@ -65,7 +65,7 @@ geo-experiment/
 |---|---|
 | `1_preparation_data.ipynb` | Downloads C-SEO Bench, extracts competitor documents |
 | `2_manipulation_combined_edits_A–D.ipynb` | Applies 11 combined GEO methods in parallel (GPT-4o-mini) |
-| `3_retrieval_stage/` | Submits documents to Vertex AI Search, records retrieval ranks |
+| `3_retrieval_stage/` | Submits documents to Agent Search, records retrieval ranks |
 | `4_generation_parallel_A–D_v4.ipynb` | Generates LLM responses with inline citations in parallel |
 | `5_evaluation_main_v4.ipynb` | Main analysis: H2 (N = 402 complete queries) |
 | `5_evaluation_sensitivity_v2.ipynb` | Sensitivity analysis without completeness filter (N = 500) |
@@ -131,9 +131,9 @@ Create a `config.json` in the project root:
 }
 ```
 
-### 3. Vertex AI (Retrieval Stage)
+### 3. Agent Search (Retrieval Stage)
 
-The retrieval stage requires a Google Cloud project with Vertex AI Search configured. See the retrieval stage notebooks for setup details.
+The retrieval stage requires a Google Cloud project with Agent Search configured. See the retrieval stage notebooks for setup details.
 
 ---
 
