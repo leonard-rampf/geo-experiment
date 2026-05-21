@@ -86,7 +86,7 @@ geo-experiment/
 │       ├── __init__.py
 │       ├── citation_boosting.py                           # Citation-based GEO methods
 │       └── optimization_methods.py                        # Remaining GEO method implementations
-├── config.json                                            # API keys 
+├── config.json                                            
 └── requirements.txt
 ```
 
