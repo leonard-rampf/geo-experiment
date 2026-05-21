@@ -36,24 +36,57 @@ geo-experiment/
 │   ├── dataset/
 │   │   ├── selected_docs.json                             # Target document indices (Puerto et al.)
 │   │   ├── 1_preparation_competitor_docs_v1.json          # Competitor documents per query
-│   │   ├── 2_manipulation_selected_docs_A/B/C/D_v1.json  # Subset files per notebook
+│   │   ├── 2_manipulation_selected_docs_A_v1.json         # Manipulation output — subset A
+│   │   ├── 2_manipulation_selected_docs_B_v1.json         # Manipulation output — subset B
+│   │   ├── 2_manipulation_selected_docs_C_v1.json         # Manipulation output — subset C
+│   │   ├── 2_manipulation_selected_docs_D_v1.json         # Manipulation output — subset D
 │   │   └── 2_manipulation_selected_docs_v1.json           # Merged manipulation output
 │   ├── retrieval/
-│   │   └── 20260413_retrieval_results_geo_v2.csv          # Retrieval results per query-method
+│   │   ├── 20260413_vertex_geoedits_v1.jsonl              # JSONL corpus uploaded to Agent Search
+│   │   ├── 20260413_retrieval_results_geo_v1.csv          # Raw retrieval results (all runs appended)
+│   │   ├── 20260413_retrieval_results_geo_v2.csv          # Clean retrieval results (deduplicated)
+│   │   ├── 20260413_retrieval_alert_log_geo_v1.csv        # Alert log — Run 1
+│   │   ├── 20260413_retrieval_alert_log_geo_v2.csv        # Alert log — Run 2
+│   │   ├── 20260413_retrieval_alert_log_geo_v3.csv        # Alert log — Run 3
+│   │   └── 20260413_retrieval_alert_investigation_results_v1.csv  # Empty-query verification results
 │   └── generation/
-│       ├── 4_generation_results_A/B/C/D_v4.parquet        # Per-notebook generation results
-│       └── 4_generation_results_v4.parquet                # Merged generation results
+│       ├── 4_generation_results_A_v4.parquet              # Per-notebook generation results
+│       ├── 4_generation_results_B_v4.parquet
+│       ├── 4_generation_results_C_v4.parquet
+│       ├── 4_generation_results_D_v4.parquet
+│       ├── 4_generation_results_v4.parquet                # Merged generation results
+│       └── 4_generation_runs_without_target_v3.json       # Generation runs excluding target document
 ├── notebook/
-│   ├── 1_preparation/      1_preparation_data.ipynb
-│   ├── 2_manipulation/     2_manipulation_combined_edits_A/B/C/D.ipynb
+│   ├── 1_preparation/
+│   │   ├── 0_power_calculation.ipynb                      # A priori sample size calculation
+│   │   └── 1_preparation_data.ipynb                       # C-SEO Bench extraction & competitor docs
+│   ├── 2_manipulation/
+│   │   ├── 2_manipulation_combined_edits_A.ipynb          # GEO edits — subset A (parallel)
+│   │   ├── 2_manipulation_combined_edits_B.ipynb          # GEO edits — subset B (parallel)
+│   │   ├── 2_manipulation_combined_edits_C.ipynb          # GEO edits — subset C (parallel)
+│   │   ├── 2_manipulation_combined_edits_D.ipynb          # GEO edits — subset D (parallel)
+│   │   └── 3_transform_to_jsonl.ipynb                     # Transform documents to Agent Search JSONL
 │   ├── 3_retrieval_stage/
-│   ├── 4_generation_stage/ 4_generation_parallel_A/B/C/D_v4.ipynb
-│   └── 5_evaluation/       5_evaluation_main_v4.ipynb
-│                           5_evaluation_sensitivity_v2.ipynb
+│   │   └── 4_retrieval_stage_geo.ipynb                    # Retrieval experiment & fault-tolerant pipeline
+│   ├── 4_generation_stage/
+│   │   ├── 4_generation_parallel_A_v4.ipynb               # LLM response generation — subset A
+│   │   ├── 4_generation_parallel_B_v4.ipynb               # LLM response generation — subset B
+│   │   ├── 4_generation_parallel_C_v4.ipynb               # LLM response generation — subset C
+│   │   └── 4_generation_parallel_D_v4.ipynb               # LLM response generation — subset D
+│   └── 5_evaluation/
+│       ├── 5_retrieval_analysis.ipynb                     # H1 analysis: retrieval rank differences
+│       ├── 5_evaluation_main_v4.ipynb                     # H2 main analysis 
+│       └── 5_evaluation_sensitivity_v2.ipynb              # H2 sensitivity analysis 
 ├── src/
-│   ├── llms/               OpenAI API wrapper
-│   └── methods/            GEO method implementations
-├── config.json             API keys (not committed)
+│   ├── llms/
+│   │   ├── __init__.py
+│   │   ├── llm_interface.py                               # Abstract LLM interface
+│   │   └── openai.py                                      # OpenAI API wrapper
+│   └── methods/
+│       ├── __init__.py
+│       ├── citation_boosting.py                           # Citation-based GEO methods
+│       └── optimization_methods.py                        # Remaining GEO method implementations
+├── config.json                                            # API keys 
 └── requirements.txt
 ```
 
