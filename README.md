@@ -133,7 +133,41 @@ Create a `config.json` in the project root:
 
 ### 3. Agent Search (Retrieval Stage)
 
-The retrieval stage requires a Google Cloud project with Agent Search configured. See the retrieval stage notebooks for setup details.
+The retrieval stage uses the Google Cloud Agent Search (`discoveryengine_v1` Python client). In addition to the Python package in `requirements.txt`, the **Google Cloud CLI** must be installed and authenticated:
+
+```bash
+# Install: https://cloud.google.com/sdk/docs/install
+gcloud auth application-default login
+```
+
+**App configuration**
+- Project ID: `project-6dc8c84c-e76e-4519-bb0`replace with your own ID if needed 
+- Engine ID: `retrieval-stage-geo-v2_1775725808007`replace with your own ID if needed 
+- App type: Custom search (general), location: global
+- Enterprise edition features, generative responses, and all re-ranking/boost/bury controls disabled
+- Serving config: `default_config` with `RANK_BY_EMBEDDING` and Google-managed text embeddings
+- Connected to 4 different data stores below
+
+**Data stores** — corpus distributed across four structured data stores (27,500 documents each):
+- `geo-experiment-batch1-v2_1775680563433`
+- `experiment-geo-batch2-v2_1775681604535`
+- `experiment-geo-batch3-v2_1775725626254`
+- `experiment-geo-batch4-v2_1775725685864`
+
+**Schema** — three fields per document:
+- `text` — Searchable, Retrievable
+- `query_id` — Indexable, Retrievable (enables per-unit filter at request time)
+- `original_query` — Indexable, Retrievable
+
+**Request parameters**
+- `page_size = 50`, `relevance_threshold = LOWEST`
+- `filter = f'query_id: ANY("{query_id_filter}")'` — isolates each experimental unit
+- No spelling correction, query expansion, or query rewriting applied
+
+**Ingestion**
+- Source: JSONL from Google Cloud Storage, one-time synchronisation, global location
+- "Exclude from generative AI features" enabled to prevent platform models from altering document text
+- Ingestion date: 09/04/2026
 
 ---
 
