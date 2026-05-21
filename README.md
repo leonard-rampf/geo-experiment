@@ -22,8 +22,8 @@ This project empirically tests whether content-based Generative Engine Optimizat
 1. Preparation   →   Extract competitor documents from the C-SEO Bench dataset
 2. Manipulation  →   Apply 21 GEO methods to each target document (GPT-4o-mini)
 3. Retrieval     →   Submit edited documents to Agent Search, record retrieval ranks
-4. Generation    →   Generate LLM responses with inline citations (GPT-4o-mini) and test H1 via Wilcoxon signed-rank test + Sign Test
-5. Evaluation    →   Test H2 via Wilcoxon signed-rank test + Sign Test
+4. Generation    →   Generate LLM responses with inline citations (GPT-4o-mini)
+5. Evaluation    →   Test H1 (retrieval rank) and H2 (citation visibility) via Wilcoxon signed-rank test + Sign Test
 ```
 
 ---
@@ -96,12 +96,15 @@ geo-experiment/
 
 | Notebook | Description |
 |---|---|
+| `0_power_calculation.ipynb` | A priori sample size calculation for the Wilcoxon test |
 | `1_preparation_data.ipynb` | Downloads C-SEO Bench, extracts competitor documents |
-| `2_manipulation_combined_edits_A–D.ipynb` | Applies 11 combined GEO methods in parallel (GPT-4o-mini) |
-| `3_retrieval_stage/` | Submits documents to Agent Search, records retrieval ranks |
+| `2_manipulation_combined_edits_A–D.ipynb` | Applies 21 GEO methods in parallel (GPT-4o-mini) |
+| `3_transform_to_jsonl.ipynb` | Transforms GEO-edited documents to Agent Search JSONL format |
+| `4_retrieval_stage_geo.ipynb` | Fault-tolerant retrieval pipeline against Agent Search |
 | `4_generation_parallel_A–D_v4.ipynb` | Generates LLM responses with inline citations in parallel |
-| `5_evaluation_main_v4.ipynb` | Main analysis: H2 (N = 402 complete queries) |
-| `5_evaluation_sensitivity_v2.ipynb` | Sensitivity analysis without completeness filter (N = 500) |
+| `5_retrieval_analysis.ipynb` | H1 analysis: effect of GEO edits on retrieval rank |
+| `5_evaluation_main_v4.ipynb` | H2 main analysis: citation visibility (N = 402) |
+| `5_evaluation_sensitivity_v2.ipynb` | H2 sensitivity analysis without completeness filter (N = 500) |
 
 ---
 
@@ -174,8 +177,8 @@ gcloud auth application-default login
 ```
 
 **App configuration**
-- Project ID: `project-6dc8c84c-e76e-4519-bb0`replace with your own ID if needed 
-- Engine ID: `retrieval-stage-geo-v2_1775725808007`replace with your own ID if needed 
+- Project ID: `project-6dc8c84c-e76e-4519-bb0`
+- Engine ID: `retrieval-stage-geo-v2_1775725808007`
 - App type: Custom search (general), location: global
 - Enterprise edition features, generative responses, and all re-ranking/boost/bury controls disabled
 - Serving config: `default_config` with `RANK_BY_EMBEDDING` and Google-managed text embeddings
